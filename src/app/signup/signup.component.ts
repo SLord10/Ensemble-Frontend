@@ -12,5 +12,7 @@ export class SignupComponent implements OnInit {
     focus2;
     constructor() { }
 
+    isCheckboxChecked = false;
+
     ngOnInit() {}
 }

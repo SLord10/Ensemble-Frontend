@@ -11,7 +11,25 @@ export class LandingComponent implements OnInit {
   focus1: any;
 
   constructor() { }
+  isButtonSelected = false;
+  showInputForAutre = false;
+  selectedButton: string | null = null;
 
+  toggleButton() {
+    this.isButtonSelected = !this.isButtonSelected;
+
+    // If 'Autre' button is deselected, hide the input
+    if (!this.isButtonSelected && this.selectedButton === 'btn4') {
+      this.showInputForAutre = false;
+    }
+  }
+
+  selectButton(button: string) {
+    this.selectedButton = button === this.selectedButton ? null : button;
+
+    // Show input only if 'Autre' button is selected
+    this.showInputForAutre = this.selectedButton === 'btn4';
+  }
   ngOnInit() {}
 
 }
