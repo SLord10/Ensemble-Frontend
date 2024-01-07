@@ -37,22 +37,18 @@
       <!-- 1st Hero Variation -->
     </div>
 
-    <section class="section section-lg pt-lg-0 section-contact-us">
+    <section *ngIf="showNeedForm" class="section section-lg pt-lg-0 section-contact-us">
       <div class="container">
         <div class="row justify-content-center mt--300">
           <div class="col-lg-8">
-            
-              
-                  <div class="shadow" style="height: 400px; width: 660px;" id="map"></div>
-            
-                  {{nn?.latitude}},
-                  {{nn?.longitude}}
+              <app-map (mapCoordinatesChange)="coordinates = $event"></app-map>
           </div>
         </div>
       </div>
     </section>
-    <br><br><br><br><br><br><br><br><br><br>
-    <section class="section section-lg pt-lg-0 section-contact-us">
+
+    <section *ngIf="showNeedForm" class="section section-lg pt-lg-0 section-contact-us">
+      <br><br><br><br><br><br><br><br><br><br>
         <div class="container">
           <div class="row justify-content-center mt--300">
             <div class="col-lg-8">
@@ -60,17 +56,32 @@
                 <div class="card-body p-lg-5">
                   <h4 class="mb-1">Describe your needs to us</h4>
                   <br>
-                  
-                  <div class="form-group mb-4">
-                    <textarea class="form-control form-control-alternative" name="name" rows="4" cols="80" placeholder="Type a message..."></textarea>
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-default btn-round btn-block btn-lg">Send Message</button>
-                  </div>
+                  <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+                    <div class="form-group mb-4">
+                      <textarea class="form-control form-control-alternative" ngModel name="description" required rows="4" cols="80" placeholder="Type a message..."></textarea>
+                    </div>
+                    <div>
+                      <button
+                              type="submit"
+                              class="btn btn-default btn-round btn-block btn-lg"
+                              [disabled]="!form.valid  || !coordinates"
+                              [ngClass]="{'disabled': !form.valid  || !coordinates}">
+                        Send Message
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section *ngIf="!showNeedForm && showAlert">
+        <div style="max-width: 50%; margin-inline: auto;" class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Well done!</h4>
+          <p>Thank You for Sharing Your Needs with Us.</p>
+          <hr>
+          <p class="mb-0">Rest assured that our team will carefully study your request and do our utmost to address your concerns.</p>
         </div>
       </section>
       

@@ -28,7 +28,7 @@ export class LoginComponent {
     this.loadingService.showLoadingUntilComplete(login$).subscribe({
       next: async resp => {
           if (resp.message === WRONG_PASSWORD || resp.message === USER_NOT_EXIST) this.message = resp.message
-          else await this.onLoginPassed(resp.message)
+          else await this.onLoginPassed(resp.data)
       },
       error: err => {
         const errorMessage = err.error.message
@@ -37,9 +37,9 @@ export class LoginComponent {
     })
   }
 
-  async onLoginPassed(userName: string) {
-    localStorage.setItem('userName', userName)
-    this.auth.emitIsLoggedIn(true)
+  async onLoginPassed(data: any) {
+    localStorage.setItem('userName', data.username)
+    this.auth.emitLoggedInUser(data)
     await this.router.navigateByUrl('/home')
   }
 }

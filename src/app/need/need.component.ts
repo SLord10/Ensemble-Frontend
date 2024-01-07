@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../services/auth.service";
+import {NeedService} from "../services/need.service";
 
 declare var L: any;
 
@@ -11,42 +13,41 @@ export class NeedComponent implements OnInit {
 
   focus: any;
   focus1: any;
-  nn: any;
 
-  constructor() { }
+  loggedInUser$ = this.auth.getLoggedInUser()
+
+  coordinates: { latitude: number, longitude: number } = null;
+
+  showNeedForm = true;
+  showAlert = false;
+  constructor(
+      private auth: AuthService,
+      private needService: NeedService
+  ) { }
+
 
   ngOnInit() {
-    let map = L.map('map').setView([34, -5], 7);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    // Create a marker group to manage markers
-    var markers = L.layerGroup().addTo(map);
-
-    // Using an arrow function to retain the component's context
-    const onMapClick = (e) => {
-      // Remove existing markers
-      markers.clearLayers();
-
-      // Create a new marker at the clicked location
-      var newMarker = L.marker(e.latlng).addTo(markers);
-
-      // You can also open a popup for the marker if needed
-    
-      // Extract latitude and longitude separately
-      const coordinates = e.latlng.toString().match(/\(([^,]+),\s*([^)]+)\)/);
-      if (coordinates && coordinates.length === 3) {
-        this.nn = {
-          latitude: parseFloat(coordinates[1]),
-          longitude: parseFloat(coordinates[2])
-        };
-      } else {
-        console.error('Invalid coordinates format');
-      }
-    };
-
-    map.on('click', onMapClick);
+    console.log(this.coordinates)
   }
+
+  onSubmit(value: any) {
+    const need = {
+      ...value,
+      coordoonnees_x: this.coordinates?.latitude,
+      coordoonnees_y: this.coordinates?.longitude,
+      votes: 0,
+      etat: "en attente",
+      user_id: 1
+    }
+    this.needService.saveNeed(need).subscribe({
+        next: resp => {
+            this.showNeedForm = false;
+            this.showAlert = true;
+        }
+    })
+    console.log(need);
+  }
+
+
+  protected readonly onsubmit = onsubmit;
 }

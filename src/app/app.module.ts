@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 import {NeedComponent} from "./need/need.component";
 import {HttpClientModule} from "@angular/common/http";
+import { MapComponent } from './shared/map/map.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {HttpClientModule} from "@angular/common/http";
     FooterComponent,
     LoginComponent,
     LoadingSpinnerComponent,
-    NeedComponent
+    NeedComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
