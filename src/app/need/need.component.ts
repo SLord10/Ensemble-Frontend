@@ -34,8 +34,7 @@ export class NeedComponent implements OnInit {
       var newMarker = L.marker(e.latlng).addTo(markers);
 
       // You can also open a popup for the marker if needed
-      newMarker.bindPopup("You clicked the map at " + e.latlng.toString()).openPopup();
-
+    
       // Extract latitude and longitude separately
       const coordinates = e.latlng.toString().match(/\(([^,]+),\s*([^)]+)\)/);
       if (coordinates && coordinates.length === 3) {
