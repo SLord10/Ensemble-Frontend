@@ -2,6 +2,12 @@
     height: 55px;
 }
 
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
 .custom-btn-color {
     background-color: #5e72e4; /* Change this to your desired background color */
     color: white;
@@ -15,4 +21,3 @@
      /* Change this to your desired text color */
   }
 
-  

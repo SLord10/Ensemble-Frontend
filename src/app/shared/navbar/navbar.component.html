@@ -28,12 +28,13 @@
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
             <i class="ni ni-collection d-lg-none"></i>
-            <span class="nav-link-inner--text">Menu</span>
+            <span class="nav-link-inner--text ">Menu</span>
           </a>
-          <div class="dropdown-menu">
-            <a [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
-            <a [routerLink]="['/login']" class="dropdown-item">Login</a>
-            <a [routerLink]="['/register']" class="dropdown-item">Register</a>
+          <div *ngIf="{ isLoggedIn: isLoggedIn$ | async } as auth" class="dropdown-menu">
+            <a *ngIf="auth.isLoggedIn" [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
+            <a *ngIf="!auth.isLoggedIn" [routerLink]="['/login']" class="dropdown-item">Login</a>
+            <a *ngIf="!auth.isLoggedIn" [routerLink]="['/register']" class="dropdown-item">Register</a>
+            <a *ngIf="auth.isLoggedIn" (click)="logout()" class="dropdown-item">Logout</a>
           </div>
         </li>
         
@@ -89,9 +90,9 @@
         <li class="nav-item d-none d-lg-block ml-lg-4">
           <a [routerLink]="['/donate']" class="btn btn-neutral  btn-icon custom-btn-color">
             <span class="btn-inner--icon">
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
+              <i class="fa fa-plus-square mr-2" aria-hidden="true"></i>
             </span>
-            <span class="nav-link-inner--text"> Claim need</span>
+            <span class="nav-link-inner--text">Claim need</span>
           </a>
         </li>
 
