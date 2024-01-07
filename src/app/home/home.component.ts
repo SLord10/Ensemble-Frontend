@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatastropheService } from '../services/catastrophe.service';
+import { Response } from '../model/Response.model';
 
 @Component({
     selector: 'app-home',
@@ -24,8 +25,9 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
     this.servicecat.getcat().subscribe(
-        (response:  any[] ) => {
-           this.catastrophes = response;
+        (response:  Response ) => {
+           this.catastrophes = response.data;
+           console.log(this.catastrophes);
         },
         (error) => {
             console.error('Error:', error);

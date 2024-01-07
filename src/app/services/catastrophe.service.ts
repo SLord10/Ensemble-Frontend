@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { API_TOKEN } from '../config/backend_api.config';
 import { shareReplay } from 'rxjs';
+import { Response } from '../model/Response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class CatastropheService {
   }
 
   getcat(){
-    return this.http.get<any>(`${this.apiUrl}/catastrophe`).pipe(
+    return this.http.get<Response>(`${this.apiUrl}/catastrophe`).pipe(
         shareReplay(1)
     )
   }
