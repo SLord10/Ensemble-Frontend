@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class ProfileComponent implements OnInit {
 
+    userName = localStorage.getItem('userName')
+
     constructor() { }
 
     ngOnInit() {}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthService} from "../services/auth.service";
 
@@ -8,13 +8,17 @@ import {AuthService} from "../services/auth.service";
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router){
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log('Hitting private area!!', route)
+    const url = route.url[0].path
+    if (url === 'need' && !this.auth.isLoggedIn()){
+      this.router.navigateByUrl('/login')
+      return false
+    }
     return this.auth.isLoggedIn()
   }
   
