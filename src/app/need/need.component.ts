@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {NeedService} from "../services/need.service";
 
+
 declare var L: any;
 
 @Component({
@@ -13,6 +14,7 @@ export class NeedComponent implements OnInit {
 
   focus: any;
   focus1: any;
+  userid: any;
 
   loggedInUser$ = this.auth.getLoggedInUser()
 
@@ -27,7 +29,13 @@ export class NeedComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.coordinates)
+
+    this.auth.loggedInUser$.subscribe({
+      next: data => {
+        this.userid = data?.user_id;
+      }
+    })
+    
   }
 
   onSubmit(value: any) {
@@ -37,7 +45,7 @@ export class NeedComponent implements OnInit {
       coordoonnees_y: this.coordinates?.longitude,
       votes: 0,
       etat: "en attente",
-      user_id: 1
+      user_id: this.userid
     }
     this.needService.saveNeed(need).subscribe({
         next: resp => {
