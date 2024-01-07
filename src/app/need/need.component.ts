@@ -37,7 +37,7 @@ export class NeedComponent implements OnInit {
       coordoonnees_y: this.coordinates?.longitude,
       votes: 0,
       etat: "en attente",
-      user_id: 1
+      user_id: this.loggedInUser$?.id
     }
     this.needService.saveNeed(need).subscribe({
         next: resp => {
