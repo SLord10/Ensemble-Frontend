@@ -7,7 +7,7 @@ import {BehaviorSubject, Observable, shareReplay} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
-
+ 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false)
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable()
 

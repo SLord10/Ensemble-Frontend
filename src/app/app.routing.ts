@@ -9,13 +9,14 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import {NeedComponent} from "./need/need.component";
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
-    { path: 'user-profile',     component: ProfileComponent },
+    { path: 'user-profile',     component: ProfileComponent,canActivate: [AuthGuard] },
     { path: 'register',           component: SignupComponent },
     { path: 'donate',          component: LandingComponent },
-    { path: 'need',          component: NeedComponent },
+    { path: 'need',          component: NeedComponent,canActivate: [AuthGuard] },
     { path: 'login',          component: LoginComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

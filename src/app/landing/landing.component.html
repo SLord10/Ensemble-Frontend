@@ -23,10 +23,7 @@
               <p class="lead  text-white">Your support can bring hope, relief, and recovery to the victims of these devastating events. </p>
               <div class="btn-wrapper">
                 
-                <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-landing-page" class="btn btn-white btn-icon mb-3 mb-sm-0">
-                  <span class="btn-inner--icon"><i class="fa fa-money mr-2"></i></span>
-                  <span class="btn-inner--text">Donate now</span>
-                </a>
+                
               </div>
             </div>
           </div>
@@ -46,43 +43,114 @@
     <!-- 1st Hero Variation -->
   </div>
   <section class="section section-lg pt-lg-0 mt--300">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <div class="row row-grid">
-            <div class="col-lg-4">
-              <div class="card shadow border-0">
-                <div class="card-body py-5">
-                  <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  </div>
-                  <h6 class="text-primary text-uppercase">Choose your donation amount</h6>
-                  <p class="description mt-3">Together, we can make a meaningful impact and provide assistance to those who need it the most.</p>
+    <div class="col-lg-6">
+      <!-- Tabs with icons -->
+      
+      <div class="custom-tab-content flex-column flex-md-row">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active1" class="nav nav-pills justify-content-center" type="pills">
+          <li class="nav-item" [ngbNavItem]="1">
+            <a class="nav-link" ngbNavLink><i class="fa fa-money" aria-hidden="true"></i> Donation amount</a>
+            <ng-template ngbNavContent>
+              <div class="tab-content">
+                <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    </div>
+                    <h6 class="text-primary text-uppercase">Choose your donation amount</h6>
+                    <p class="description mt-3">Together, we can make a meaningful impact and provide assistance to those who need it the most.</p>
+                    
+                    <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn1', 'btn-secondary': selectedButton !== 'btn1'}" (click)="selectButton('btn1')">100 MAD</button>
+                    <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn2', 'btn-secondary': selectedButton !== 'btn2'}" (click)="selectButton('btn2')">200 MAD</button>
+                    <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn3', 'btn-secondary': selectedButton !== 'btn3'}" (click)="selectButton('btn3')">500 MAD</button>
+                    <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn4', 'btn-secondary': selectedButton !== 'btn4'}" (click)="selectButton('btn4')">Other</button>
+                    <div *ngIf="showInputForAutre">
+                      <br>
+                      <div class="form-group d-flex align-items-center">
+                        <input type="text" id="autreInput" name="autreInput" class="form-control col-md-3">
+                        <p class="ml-2 mb-0">MAD</p>
+                      </div>
+                      
+                    </div>
                   
-                  <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn1', 'btn-secondary': selectedButton !== 'btn1'}" (click)="selectButton('btn1')">100 MAD</button>
-                  <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn2', 'btn-secondary': selectedButton !== 'btn2'}" (click)="selectButton('btn2')">200 MAD</button>
-                  <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn3', 'btn-secondary': selectedButton !== 'btn3'}" (click)="selectButton('btn3')">500 MAD</button>
-                  <button class="btn" [ngClass]="{'btn-primary': selectedButton === 'btn4', 'btn-secondary': selectedButton !== 'btn4'}" (click)="selectButton('btn4')">Other</button>
-                  <div *ngIf="showInputForAutre">
-                    <br>
-                    <div class="form-group d-flex align-items-center">
-                      <input type="text" id="autreInput" name="autreInput" class="form-control col-md-3">
-                      <p class="ml-2 mb-0">MAD</p>
+              </div>
+            </ng-template>
+          </li>
+          <li class="nav-item" [ngbNavItem]="2">
+            <a class="nav-link" ngbNavLink>
+              <i class="fa fa-info" aria-hidden="true"></i> Informations
+            </a>
+            <ng-template ngbNavContent>
+              <div class="tab-content">
+                <div class="card-body p-lg-5">
+                  <div class="form-group mt-5" [ngClass]="{'focused':focus===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Your name" type="text" (focus)="focus=true" (blur)="focus=false">
+                    </div>
+                  </div>
+                  <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Email address" type="email" (focus)="focus1=true" (blur)="focus1=false">
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </ng-template>
+          </li>
+          <li class="nav-item" [ngbNavItem]="3">
+            <a class="nav-link" ngbNavLink>
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Credentials
+            </a>
+            <ng-template ngbNavContent>
+              <div class="tab-content">
+                <div class="card-body p-lg-5">
+                  <div class="form-group mt-5" [ngClass]="{'focused':focus===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Credit card" type="text" (focus)="focus=true" (blur)="focus=false">
+                    </div>
+                  </div>
+                  <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Expiration date" type="text" (focus)="focus1=true" (blur)="focus1=false">
+                    </div>
+                  </div>
+                  <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="CVC" type="text" (focus)="focus1=true" (blur)="focus1=false">
                     </div>
                     
                   </div>
                 </div>
-                
+                <a class="btn btn-primary text-white">
+                  
+                  <span class="btn-inner--text">Donate now</span>
+                </a>
               </div>
-              
-            </div>
-            
-            
-          </div>
-        </div>
+            </ng-template>
+          </li>
+        </ul>
       </div>
+  
+      <div [ngbNavOutlet]="nav" class="custom-tab-content"></div>
     </div>
   </section>
+
+
+ 
+  
   <section class="section section-lg">
     <div class="container">
       <div class="row row-grid align-items-center">

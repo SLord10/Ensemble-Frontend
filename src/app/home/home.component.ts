@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatastropheService } from '../services/catastrophe.service';
 
 @Component({
     selector: 'app-home',
@@ -13,9 +14,24 @@ export class HomeComponent implements OnInit {
         right: false
     };
 
+    catastrophes: any[] = [];
+
+
+
     focus;
     focus1;
-    constructor() { }
+    constructor(private servicecat: CatastropheService) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+    this.servicecat.getcat().subscribe(
+        (response:  any[] ) => {
+           this.catastrophes = response;
+        },
+        (error) => {
+            console.error('Error:', error);
+            // Handle errors here
+        }
+    );
+}
+
 }
