@@ -2,6 +2,12 @@
     height: 55px;
 }
 
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
 .custom-btn-color {
     
     border: 1px solid rgb(240, 240, 240);
@@ -14,4 +20,3 @@
 //      /* Change this to your desired text color */
 //   }
 
-  
