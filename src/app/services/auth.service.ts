@@ -8,7 +8,7 @@ import {Response} from "../model/Response.model";
   providedIn: 'root'
 })
 export class AuthService {
-
+ 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false)
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable()
 
