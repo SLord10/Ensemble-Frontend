@@ -19,6 +19,8 @@ import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.
 import {NeedComponent} from "./need/need.component";
 import {HttpClientModule} from "@angular/common/http";
 import { MapComponent } from './shared/map/map.component';
+import { VolunteerComponent } from './volunteer/volunteer.component';
+import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MapComponent } from './shared/map/map.component';
     LoginComponent,
     LoadingSpinnerComponent,
     NeedComponent,
-    MapComponent
+    MapComponent,
+    VolunteerComponent,
+    LogisticAidComponent
   ],
   imports: [
     BrowserModule,

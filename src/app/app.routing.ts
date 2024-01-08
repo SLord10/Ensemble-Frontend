@@ -9,6 +9,8 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import {NeedComponent} from "./need/need.component";
+import { VolunteerComponent } from './volunteer/volunteer.component';
+import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -17,6 +19,8 @@ const routes: Routes =[
     { path: 'donate',          component: LandingComponent },
     { path: 'need',          component: NeedComponent },
     { path: 'login',          component: LoginComponent },
+    { path: 'volunteer',          component: VolunteerComponent },
+    { path: 'logistic-aid',          component: LogisticAidComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
