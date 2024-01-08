@@ -30,7 +30,6 @@ export class NgbdModalContent {
   constructor(public activeModal: NgbActiveModal) {}
 }
 
-
 declare var L: any;
 
 @Component({
@@ -64,7 +63,7 @@ export class NeedComponent implements OnInit {
         this.userid = data?.user_id;
       }
     })
-    
+
   }
 
   onSubmit(value: any) {
