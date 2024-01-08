@@ -43,8 +43,6 @@ export class NeedComponent implements OnInit {
   focus1: any;
   userid: any;
 
-  loggedInUser$ = this.auth.getLoggedInUser()
-
   coordinates: { latitude: number, longitude: number } = null;
 
   showNeedForm = true;
@@ -57,7 +55,6 @@ export class NeedComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.auth.loggedInUser$.subscribe({
       next: data => {
         this.userid = data?.user_id;

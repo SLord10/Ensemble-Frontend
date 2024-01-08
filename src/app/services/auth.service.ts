@@ -13,7 +13,7 @@ export class AuthService {
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable()
 
   private loggedInUserSubject = new BehaviorSubject<any>(null)
-  loggedInUser$: Observable<any> = this.loggedInUserSubject.asObservable()
+  loggedInUser$: Observable<any> = this.loggedInUserSubject.asObservable().pipe(shareReplay(1))
 
   constructor(
       private http: HttpClient,

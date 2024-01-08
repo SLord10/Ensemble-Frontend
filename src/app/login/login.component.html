@@ -16,9 +16,12 @@
           <div class="card bg-secondary shadow border-0">
             
             <div class="card-body px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <small> sign in </small>
-              </div>
+                <div class="text-center text-muted mb-4">
+<!--                    <small> sign in </small>-->
+                    <div *ngIf="receivedMessage$ | async as message" class="alert alert-warning" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
               <form #form="ngForm" role="form" (ngSubmit)="login(form.value)">
                 <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                   <div class="input-group input-group-alternative">

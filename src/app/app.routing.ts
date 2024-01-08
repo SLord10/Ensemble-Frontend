@@ -11,16 +11,19 @@ import { LoginComponent } from './login/login.component';
 import {NeedComponent} from "./need/need.component";
 import { VolunteerComponent } from './volunteer/volunteer.component';
 import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
+import {AuthGuard} from "./guards/auth.guard";
+import {UserNeedsComponent} from "./user-needs/user-needs.component";
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
-    { path: 'user-profile',     component: ProfileComponent },
-    { path: 'register',           component: SignupComponent },
-    { path: 'donate',          component: LandingComponent },
-    { path: 'need',          component: NeedComponent },
-    { path: 'login',          component: LoginComponent },
-    { path: 'volunteer',          component: VolunteerComponent },
-    { path: 'logistic-aid',          component: LogisticAidComponent },
+    { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'register',           component: SignupComponent, canActivate: [AuthGuard] },
+    { path: 'donate',          component: LandingComponent, canActivate: [AuthGuard] },
+    { path: 'need',          component: NeedComponent, canActivate: [AuthGuard] },
+    { path: 'user-needs',          component: UserNeedsComponent, canActivate: [AuthGuard] },
+    { path: 'login',          component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'volunteer',          component: VolunteerComponent, canActivate: [AuthGuard] },
+    { path: 'logistic-aid',          component: LogisticAidComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

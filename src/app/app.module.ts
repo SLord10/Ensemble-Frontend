@@ -16,11 +16,13 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
-import {NeedComponent} from "./need/need.component";
+import {NeedComponent, NgbdModalContent} from "./need/need.component";
 import {HttpClientModule} from "@angular/common/http";
 import { MapComponent } from './shared/map/map.component';
 import { VolunteerComponent } from './volunteer/volunteer.component';
 import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
+import { UserNeedsComponent } from './user-needs/user-needs.component';
+import {InfoComponent} from "./home/info.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
     NeedComponent,
     MapComponent,
     VolunteerComponent,
-    LogisticAidComponent
+    LogisticAidComponent,
+    NgbdModalContent,
+    UserNeedsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    InfoComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

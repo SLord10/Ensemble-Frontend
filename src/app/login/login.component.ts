@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../services/auth.service";
-import {UNKNOWN_ERROR, USER_NOT_EXIST, WRONG_PASSWORD} from "../constants/auth.constants";
-import {Router} from "@angular/router";
+import {LOGIN_NEEDED, UNKNOWN_ERROR, USER_NOT_EXIST, WRONG_PASSWORD} from "../constants/auth.constants";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LoadingService} from "../shared/loading-spinner/loading.service";
+import {map, Observable, shareReplay} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -10,16 +11,35 @@ import {LoadingService} from "../shared/loading-spinner/loading.service";
   styleUrls: ['./login.component.css'],
   providers: [LoadingService]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   focus;
   focus1;
 
+  target = ''
+  receivedMessage$: Observable<string>
+
   message = ''
+
   constructor(
       private auth: AuthService,
       private router: Router,
+      private route: ActivatedRoute,
       private loadingService: LoadingService
   ) { }
+
+  ngOnInit(): void {
+    const target$ = this.route.queryParams.pipe(
+        map(params => params['target']),
+        shareReplay(1)
+    )
+
+    this.receivedMessage$ = target$.pipe(
+        map(target =>{
+          this.target = target
+          return LOGIN_NEEDED
+        })
+    )
+  }
 
 
   login(value: any){
@@ -40,6 +60,6 @@ export class LoginComponent {
   async onLoginPassed(data: any) {
     localStorage.setItem('userName', data.username)
     this.auth.emitLoggedInUser(data)
-    await this.router.navigateByUrl('/home')
+    await this.router.navigateByUrl(this.target || '/home')
   }
 }
