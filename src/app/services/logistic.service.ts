@@ -12,13 +12,13 @@ export class LogisticService {
   constructor(private http: HttpClient,@Inject(API_TOKEN) private apiUrl: string) { }
 
   postlogistic(body: any){
-    return this.http.post<{message: string}>(`${this.apiUrl}/aide/aide-logistique`, body).pipe(
+    return this.http.post<{message: string}>(`${this.apiUrl}:8084/aide/aide-logistique`, body).pipe(
         shareReplay(1)
     )
   }
 
   getlogistic(){
-    return this.http.get<Response>(`${this.apiUrl}/aide/aide-logistique`).pipe(
+    return this.http.get<Response>(`${this.apiUrl}:8084/aide/aide-logistique`).pipe(
         shareReplay(1)
     )
 

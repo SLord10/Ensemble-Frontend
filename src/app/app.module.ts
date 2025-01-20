@@ -23,6 +23,7 @@ import { VolunteerComponent } from './volunteer/volunteer.component';
 import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
 import { UserNeedsComponent } from './user-needs/user-needs.component';
 import {InfoComponent} from "./home/info.component";
+import { CatastropheComponent } from './catastrophe/catastrophe.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {InfoComponent} from "./home/info.component";
     VolunteerComponent,
     LogisticAidComponent,
     NgbdModalContent,
-    UserNeedsComponent
+    UserNeedsComponent,
+    CatastropheComponent
   ],
   imports: [
     BrowserModule,

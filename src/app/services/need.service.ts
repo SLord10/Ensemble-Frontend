@@ -16,15 +16,15 @@ export class NeedService {
 
 
   saveNeed(need: any): Observable<Response> {
-    return this.http.post<Response>(`${this.apiUrl}/besoin`, need)
+    return this.http.post<Response>(`${this.apiUrl}:8083/besoin`, need)
   }
 
   getNeedsByUserId(userId: number) {
-    return this.http.get<Response>(`${this.apiUrl}/besoin/user/${userId}`)
+    return this.http.get<Response>(`${this.apiUrl}:8083/besoin/user/${userId}`)
   }
 
   upvoteNeed(need: any) {
-    return this.http.patch<Response>(`${this.apiUrl}/besoin/${need?.id}`, need)
+    return this.http.patch<Response>(`${this.apiUrl}:8083/besoin/${need?.id}`, need)
   }
 
 }

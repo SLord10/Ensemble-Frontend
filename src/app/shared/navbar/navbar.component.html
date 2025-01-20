@@ -32,6 +32,7 @@
           </a>
           <div *ngIf="{ isLoggedIn: isLoggedIn$ | async } as auth" class="dropdown-menu">
             <a *ngIf="auth.isLoggedIn" [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
+            <a *ngIf="auth.isLoggedIn" [routerLink]="['/catastrophe']" class="dropdown-item">Manage catsastrophes</a>
             <a *ngIf="!auth.isLoggedIn" [routerLink]="['/login']" class="dropdown-item">Login</a>
             <a *ngIf="!auth.isLoggedIn" [routerLink]="['/register']" class="dropdown-item">Register</a>
             <a *ngIf="auth.isLoggedIn" (click)="logout()" class="dropdown-item">Logout</a>

@@ -28,19 +28,19 @@ export class AuthService {
   }
 
   register(body: any){
-    return this.http.post<{message: string}>(`${this.apiUrl}/user/register`, body).pipe(
+    return this.http.post<{message: string}>(`${this.apiUrl}:8082/user/register`, body).pipe(
         shareReplay(1)
     )
   }
 
   login(body: any){
-    return this.http.post<Response>(`${this.apiUrl}/user/login`, body).pipe(
+    return this.http.post<Response>(`${this.apiUrl}:8082/user/login`, body).pipe(
         shareReplay(1)
     )
   }
 
   getUserByUsername(username: string){
-    return this.http.get<Response>(`${this.apiUrl}/user/username/${username}`).pipe(
+    return this.http.get<Response>(`${this.apiUrl}:8082/user/username/${username}`).pipe(
         shareReplay(1)
     )
   }
