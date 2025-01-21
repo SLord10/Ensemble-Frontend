@@ -13,21 +13,68 @@
                 <span></span>
                 <span></span>
             </div>
-            <div class="container py-lg-md d-flex">
+            <div class="container  d-flex">
                 <div class="col px-0">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="">
                             <h1 class="display-3 text-white">Add a Catastrophe
                                 <span>Share the Details with Us!</span>
                             </h1>
-                            <p class="lead text-white">Help us respond quickly by providing the necessary information.</p>
-                        
+                            <p class="lead text-white">Help us respond quickly by providing the necessary information.
+                            </p>
+
+                            <div class="w-25 m-4">
+                                <button [routerLink]="['/catastrophe']" class="dropdown-item" type="button" class="btn btn-default btn-round btn-block btn-lg">Add
+                                    Catastrophe</button>
+                            </div>
+
+                            <div class="card m-4 w-100 " *ngFor="let catastrophe of catastrophes">
+                                <div class="card-body w-100">
+                                    <div class="d-flex flex-row-reverse">
+
+                                        <div class="m-1">
+                                            <svg (click)="deleteCatastrophe(catastrophe.id)"
+                                                xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="m-1">
+                                            <svg (click)="open(catastrophe)" xmlns="http://www.w3.org/2000/svg"
+                                                width="17" height="17" fill="currentColor" class="bi bi-pencil-fill"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
+                                            </svg>
+                                        </div>
+
+                                    </div>
+                                    <p class="card-text">Title: <b>{{ catastrophe.titre }}</b></p>
+                                    <p class="card-text">Description: <b>{{ catastrophe.informations }}</b></p>
+                                    <p class="card-text">City: <b>{{catastrophe.lieu}}</b></p>
+                                    <p class="card-text">Date: <b>{{ catastrophe.date }}</b></p>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+
+                                        </div>
+                                        <small class="text-muted">Created at <b> {{catastrophe.createdAt |
+                                                date:'yyyy-MM-dd HH:mm' }}</b></small>
+                                    </div>
+                                </div>
+
+                            </div>
 
                         </div>
 
                     </div>
                 </div>
             </div>
+
+
+
 
             <!-- SVG separator -->
             <div class="separator separator-bottom separator-skew">
@@ -40,66 +87,9 @@
         <!-- 1st Hero Variation -->
     </div>
 
-    <section *ngIf="showNeedForm" class="section section-lg pt-lg-0 section-contact-us">
-        <div class="container">
-            <div class="row justify-content-center mt--300">
-                <div class="col-lg-8">
-                    <app-map (mapCoordinatesChange)="coordinates = $event"></app-map>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section *ngIf="showNeedForm" class="section section-lg pt-lg-0 section-contact-us">
-        <br><br><br><br><br><br><br><br><br><br>
-        <div class="container">
-            <div class="row justify-content-center mt--300">
-                <div class="col-lg-8">
-                    <div class="card bg-gradient-secondary shadow">
-                        <div class="card-body p-lg-5">
-                            <h4 class="mb-1">Catastrophe informations</h4>
-                            <br>
-                            <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-                                <div class="form-group mb-4">
 
-                                    <b> Title: </b>
-                                    <input  [(ngModel)]="title" class="form-control" placeholder="Title" type="text" (focus)="focus=true" (blur)="focus=false">
-                                    <br>
-                                    <b>City:</b>
-                                    <input  [(ngModel)]="where"  class="form-control" placeholder="City" type="text" (focus)="focus=true" (blur)="focus=false">
-                                    <br>
-                                    <b> Date: </b>
-                                    <input  [(ngModel)]="date" class="form-control" placeholder="Starting date" type="date" (focus)="focus=true" (blur)="focus=false">
-                                    <br>
-                                    <b> Description: </b>
-                                    <textarea  class="form-control form-control-alternative" [(ngModel)]="informations"
-                                         rows="4" cols="80" placeholder="Type a message..."></textarea>
-                                </div>
-                                
 
-                                    <div class="d-flex justify-content-center">
-                                        <div data-mdb-ripple-init class="btn btn-primary btn-rounded">
-                                            <label class="form-label text-white m-1" for="customFile2">Upload image</label>
-                                            <input type="file" class="form-control d-none" id="customFile2" (change)="onFileSelected($event)" />
-                                        </div>
-                                    </div>
-                                    <br> <br>
-                           
-                                <div>
-                                    <button type="submit" class="btn btn-default btn-round btn-block btn-lg"
-                                        [disabled]="!form.valid  || !coordinates"
-                                        [ngClass]="{'disabled': !form.valid  || !coordinates}">
-                                        Send Message
-                                    </button>
-                                </div>
-                                <p *ngIf="message.length != 0" style="padding: 20px 10px;" class="bg-gradient-red text-white">{{ message }}</p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
 
@@ -290,8 +280,8 @@
                                     placeholder="Type a message..."></textarea>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-default btn-round btn-block btn-lg">Save
-                                    </button>
+                                <button type="button" class="btn btn-default btn-round btn-block btn-lg">Send
+                                    Message</button>
                             </div>
                         </div>
                     </div>

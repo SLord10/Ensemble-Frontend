@@ -14,6 +14,7 @@ import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
 import {AuthGuard} from "./guards/auth.guard";
 import {UserNeedsComponent} from "./user-needs/user-needs.component";
 import { CatastropheComponent } from './catastrophe/catastrophe.component';
+import { CatastropheListComponent } from './catastrophe-list/catastrophe-list.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes =[
     { path: 'volunteer',          component: VolunteerComponent, canActivate: [AuthGuard] },
     { path: 'logistic-aid',          component: LogisticAidComponent, canActivate: [AuthGuard] },
     { path: 'catastrophe',          component: CatastropheComponent, canActivate: [AuthGuard] },
+    { path: 'catastrophe-list',          component: CatastropheListComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

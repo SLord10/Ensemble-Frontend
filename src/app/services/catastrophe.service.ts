@@ -35,5 +35,17 @@ export class CatastropheService {
         shareReplay(1)
     )
   }
+
+  deletecat(id: string){
+    return this.http.delete<Response>(`${this.apiUrl}:8085/catastrophe/${id}`).pipe(
+        shareReplay(1)
+    )
+  }
+  
+  updatecat(id: string, body: any){
+    return this.http.patch<Response>(`${this.apiUrl}:8085/catastrophe/${id}`, body).pipe(
+        shareReplay(1)
+    )
+  }
   
 }

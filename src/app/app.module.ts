@@ -24,6 +24,8 @@ import { LogisticAidComponent } from './logistic-aid/logistic-aid.component';
 import { UserNeedsComponent } from './user-needs/user-needs.component';
 import {InfoComponent} from "./home/info.component";
 import { CatastropheComponent } from './catastrophe/catastrophe.component';
+import { CatastropheListComponent } from './catastrophe-list/catastrophe-list.component';
+import { NgbdModalContent2 } from './catastrophe-list/catastrophe-list.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { CatastropheComponent } from './catastrophe/catastrophe.component';
     LogisticAidComponent,
     NgbdModalContent,
     UserNeedsComponent,
-    CatastropheComponent
+    CatastropheComponent,
+    CatastropheListComponent,
+    NgbdModalContent2
   ],
   imports: [
     BrowserModule,
